@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tourism.access_tourism_places,access_tourism_places,tourism.model_tourism_places,base.group_user,1,1,1,1
+tourism.access_tourism_hotels,access_tourism_hotels,tourism.model_tourism_hotels,base.group_user,1,1,1,1

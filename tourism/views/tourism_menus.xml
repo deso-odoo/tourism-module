@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="destination_action" model="ir.actions.act_window">
+        <field name="name">Destinations</field>
+        <field name="res_model">tourism.places</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hotels_action" model="ir.actions.act_window">
+        <field name="name">Hotels</field>
+        <field name="res_model">tourism.hotels</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tourism_menu_root" name="Tourism">
+        <menuitem id="tourism_first_menu" name="Destinations">
+            <menuitem id="tourism_destination_menu" action="destination_action" name="Places"/>
+        </menuitem>
+        <menuitem id="tourist_rentals_menu" name="Rentals">
+            <menuitem id="tourism_hotels_menu" action="hotels_action" name="Hotels" />
+            <!-- <menuitem id="tourism_cars" action="cars_action" name="Cars" /> -->
+        </menuitem>
+    </menuitem>
+</odoo>

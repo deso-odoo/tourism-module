@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="tourism.places" id="tourism_places_demo_data_1">
+            <field name="name">New York</field>
+            <field name="country">USA</field>
+            <field name="description">New York is a city of diversity and dynamism. It is also a city of politics, economy and culture. It is even described as the economic and cultural capital of the world, and New York City is one of the most populous cities in the United States.</field>
+            <field name="price">800000</field>
+        </record>
+        <record model="tourism.places" id="tourism_places_demo_data_2">
+            <field name="name">London</field>
+            <field name="country">U.K</field>
+            <field name="description">London is the capital city of the United Kingdom. It is the U.K.'s largest metropolis and its economic, transportation, and cultural centre.</field>
+            <field name="price">700000</field>
+        </record>
+    </data>
+</odoo>
