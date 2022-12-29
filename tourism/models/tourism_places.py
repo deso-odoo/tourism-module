@@ -12,4 +12,5 @@ class tourismPlaces(models.Model):
     duration = fields.Integer()
     price = fields.Float()
     including_flights = fields.Boolean()
-    # hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
+    hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
+    activities_ids = fields.Many2many('tourism.activities', string="Actvities")

@@ -23,11 +23,12 @@
                     <h2><field name="country" placeholder="Country" /></h2>
                     <group>
                         <group>
-                            <!-- <field name="hotel_id" /> -->
+                            <field name="hotel_id"/>
                             <field name="duration"/>
                             <field name="price"/>
                         </group>
                         <group>
+                            <field name="activities_ids" widget="many2many_tags" />
                             <field name="including_flights"/>
                         </group>
                     </group>

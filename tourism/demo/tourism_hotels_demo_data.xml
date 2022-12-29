@@ -1,13 +1,15 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="tourism.hotels" id="tourism_places_demo_data_1">
+        <record model="tourism.hotels" id="tourism_hotels_demo_data_1">
             <field name="name">Hotel Even</field>
+            <field name="city">New York</field>
             <field name="address">321 W 35th St, New York</field>
         </record>
-        <record model="tourism.hotels" id="tourism_places_demo_data_2">
+        <record model="tourism.hotels" id="tourism_hotels_demo_data_2">
             <field name="name">The Stafford London</field>
+            <field name="city">London</field>
             <field name="address">16-18 St James's Place, London SW1A</field>
         </record>
     </data>
-</odoo> -->
+</odoo>

@@ -24,6 +24,9 @@
                             <field name="availablility" />
                             <field name="required_days" />
                         </group>
+                        <group>
+                            <field name="cars_ids" widget="many2many_tags" />
+                        </group>
                    </group> 
                    <notebook>
                         <page string="Description">

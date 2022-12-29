@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="tourism.cars" id="tourism_cars_demo_data_1">
+            <field name="name">Porsche</field>
+            <field name="modelName">911 Carrera S</field>
+            <field name="color">Yellow</field>
+        </record>
+        <record model="tourism.cars" id="tourism_cars_demo_data_2">
+            <field name="name">BMW</field>
+            <field name="modelName">X5</field>
+            <field name="color">White</field>
+        </record>
+        <record model="tourism.cars" id="tourism_cars_demo_data_3">
+            <field name="name">Mercedes</field>
+            <field name="modelName">Mercedes Benz GLA</field>
+            <field name="color">Black</field>
+        </record>
+    </data>
+</odoo>

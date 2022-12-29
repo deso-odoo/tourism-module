@@ -6,8 +6,10 @@ class tourismHotel(models.Model):
     _name="tourism.hotels"
     _description = "list of hotels"
 
-    name=fields.Char()
+    name=fields.Char(required=True)
+    city=fields.Char()
     description = fields.Text()
     availablility = fields.Boolean()
     address = fields.Text()
     required_days = fields.Integer()
+    cars_ids = fields.Many2many('tourism.cars', string="Cars")

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="tourism.activities" id="tourism_activities_demo_data_1">
+            <field name="name">Trekking</field>
+        </record>
+        <record model="tourism.activities" id="tourism_activities_demo_data_2">
+            <field name="name">Kayaking</field>
+        </record>
+        <record model="tourism.activities" id="tourism_activities_demo_data_3">
+            <field name="name">Paragliding</field>
+        </record>
+        <record model="tourism.activities" id="tourism_activities_demo_data_4">
+            <field name="name">Star Gazing</field>
+        </record>
+        <record model="tourism.activities" id="tourism_activities_demo_data_5">
+            <field name="name">Historical Monuments</field>
+        </record>
+        <record model="tourism.activities" id="tourism_activities_demo_data_6">
+            <field name="name">Art Galleries</field>
+        </record>
+    </data>
+</odoo>

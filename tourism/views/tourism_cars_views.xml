@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="toursim_cars_list_view" model="ir.ui.view">
+        <field name="name">Tourism Cars List View</field>
+        <field name="model">tourism.cars</field>
+        <field name="arch" type="xml">
+            <tree string="Cars">
+                <field name="name"/>
+                <field name="modelName"/>
+                <field name="color"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tourism_cars_form_view" model="ir.ui.view">
+        <field name="name">Tourism Cars Form View</field>
+        <field name="model">tourism.cars</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1><field name="name" placeholder="Car Brand"/></h1>
+                    <h2><field name="modelName" placeholder="Car Model"/></h2>
+                    <group>
+                        <field name="color"/>
+                        <field name="available"/>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tourism_cars_search_view" model="ir.ui.view">
+        <field name="name">Tourism Cars Search View</field>
+        <field name="model">tourism.cars</field>
+        <field name="arch" type="xml">
+            <search string="Cars">
+                <field name="name" string="Brand"/>
+                <field name="modelName" string="Model"/>
+                <field name="color" string="Color"/>
+                <filter string="Available" name="name" domain="[('available', '=', 'True')]" />
+                <group string="Brand">
+                    <filter string="Brand" name="name" context="{'group_by':'name'}"></filter>
+                </group>
+                <group>
+                    <filter string="Color" name="color" context="{'group_by':'color'}"></filter>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
