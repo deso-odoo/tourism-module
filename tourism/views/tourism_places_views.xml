@@ -7,7 +7,7 @@
             <tree string="Tourism Destinations">
                 <field name="name" />
                 <field name="country" />
-                <field name="description" />
+                <!-- <field name="description" /> -->
                 <field name="price" optional="show"/>
             </tree>
         </field>
@@ -39,6 +39,23 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <record id="tourism_places_search_view" model="ir.ui.view">
+        <field name="name">Tourism Places Search View</field>
+        <field name="model">tourism.places</field>
+        <field name="arch" type="xml">
+            <search string="Places">
+                <field name="name" string="Destination" />
+                <field name="country" string="Country" />
+                <filter string="Including Flights" name="name" domain="[('including_flights', '=', 'True')]" />
+                <separator/>
+                <filter string="Duration &lt;= 7Days" name="name" domain="[('duration', '&lt;=', 7)]" />
+                <filter string="Duration &gt; 7Days" name="name" domain="[('duration', '&gt;', 7)]" />
+                <group string="Country">
+                    <filter string="Country" name="name" context="{'group_by':'country'}" />
+                </group>
+            </search>
         </field>
     </record>
 </odoo>

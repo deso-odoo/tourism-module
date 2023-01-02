@@ -6,8 +6,8 @@ class tourismCars(models.Model):
     _name = "tourism.cars"
     _description = "Cars Provided by Hotel"
 
-    name = fields.Char()
-    modelName = fields.Char()
-    color = fields.Char()
+    name = fields.Char(required=True)
+    modelName = fields.Char(required=True)
+    color = fields.Char(copy=False)
     description = fields.Text()
     available = fields.Boolean()
