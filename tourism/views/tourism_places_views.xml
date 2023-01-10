@@ -30,11 +30,17 @@
                         <group>
                             <field name="activities_ids" widget="many2many_tags" />
                             <field name="including_flights"/>
+                            <field name="total_seats"/>
+                            <!-- <field name="total_booked_seats"/> -->
+                            <field name="available_seats"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
+                        </page>
+                        <page string="Bookings">
+                            <field name="booking_ids" />
                         </page>
                     </notebook>
                 </sheet>

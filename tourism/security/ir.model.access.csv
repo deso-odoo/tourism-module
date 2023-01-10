@@ -3,3 +3,4 @@ tourism.access_tourism_places,access_tourism_places,tourism.model_tourism_places
 tourism.access_tourism_hotels,access_tourism_hotels,tourism.model_tourism_hotels,base.group_user,1,1,1,1
 tourism.access_tourism_activities,access_tourism_activities,tourism.model_tourism_activities,base.group_user,1,1,1,1
 tourism.access_tourism_cars,access_tourism_cars,tourism.model_tourism_cars,base.group_user,1,1,1,1
+tourism.access_tourism_bookings,access_tourism_bookings,tourism.model_tourism_bookings,base.group_user,1,1,1,1

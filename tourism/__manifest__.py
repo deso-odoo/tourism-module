@@ -11,7 +11,8 @@
         'views/tourism_places_views.xml',
         'views/tourism_hotels_views.xml',
         'views/tourism_activities_views.xml',
-        'views/tourism_cars_views.xml'
+        'views/tourism_cars_views.xml',
+        'views/tourism_booking_views.xml'
     ],
     'demo': [
         'demo/tourism_places_demo_data.xml',

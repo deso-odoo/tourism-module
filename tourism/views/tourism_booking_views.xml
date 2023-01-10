@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="tourism_booking_list_view" model="ir.ui.view">
+        <field name="name">Tourism Booking List View</field>
+        <field name="model">tourism.bookings</field>
+        <field name="arch" type="xml">
+            <tree string="Bookings" editable="bottom">
+                <field name="name_id"/>
+                <field name="book_seats" string="Booked Seats"/>
+                <field name="total_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- <record id="tourism_booking_form_view" model="ir.ui.view">
+        <field name="name">Tourism Booking Form View</field>
+        <field name="model">tourism.bookings</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name_id"/>
+                    <field name="book_seats"/>
+                    <field name="total_price"/>
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+</odoo>
