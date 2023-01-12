@@ -7,13 +7,15 @@ class tourismPlaces(models.Model):
     _description = "Consists of all Tourism places available"
 
     name = fields.Char()
-    country = fields.Char()
+    country_id = fields.Many2one('res.country', string="Country")
     description = fields.Text()
     duration = fields.Integer()
     price = fields.Float()
     total_seats = fields.Integer()
     available_seats = fields.Integer(compute="_compute_available_seats")
     including_flights = fields.Boolean()
+    # hotels_id = fields.Many2one('tourism.hotels')
+    # hotel_id = fields.Many2one('tourism.hotels', string="Hotel", domain="[('hotel_country_id','=','place_id.country_id')]")
     hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
     activities_ids = fields.Many2many('tourism.activities','place_activities_rel','activity_id', 'place_id', string="Actvities")
     booking_ids = fields.One2many('tourism.bookings', 'place_id')

@@ -7,3 +7,4 @@ class tourismActivities(models.Model):
     _description = "Includes the list of activities during a tour"
 
     name = fields.Char(required = True)
+    Color = fields.Integer()

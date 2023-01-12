@@ -7,9 +7,10 @@ class tourismHotel(models.Model):
     _description = "list of hotels"
 
     name=fields.Char(required=True)
-    city=fields.Char(required=True)
+    hotel_country_id=fields.Many2one('res.country')
     description = fields.Text()
     availablility = fields.Boolean()
     address = fields.Text(required=True)
     required_days = fields.Integer()
     cars_ids = fields.Many2many('tourism.cars', string="Cars")
+    # place_ids = fields.One2many('tourism.places', 'hotels_id')

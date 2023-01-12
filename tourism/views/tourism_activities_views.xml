@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Activities">
                 <field name="name"/>
+                <field name="Color" widget="color_picker"/>
             </tree>
         </field>
     </record>
@@ -18,6 +19,7 @@
             <form>
                 <sheet>
                     <h1><field name="name" placeholder="Activity"/></h1>
+                    <field name="Color" widget="color_picker"/>
                 </sheet>
             </form>
         </field>

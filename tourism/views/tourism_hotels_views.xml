@@ -18,7 +18,7 @@
             <form>
                 <sheet>
                    <h1><field name="name" placeholder="Hotel Name"/></h1>
-                   <h2><field name="city" placeholder="City"/></h2>
+                   <h2><field name="hotel_country_id" placeholder="City" options="{'no_create':True, 'no_open':True}"/></h2>
                    <group>
                         <group>
                             <field name="address" />
