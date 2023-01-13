@@ -7,7 +7,10 @@
             <tree string="Tourism Destinations">
                 <field name="name" />
                 <field name="country_id" />
-                <!-- <field name="description" /> -->
+                <field name="duration" string="Duration(Days)" />
+                <field name="activities_ids" widget="many2many_tags" options="{'color_field':'Color'}" />
+                <field name="total_seats" />
+                <field name="available_seats" />
                 <field name="price" optional="show"/>
             </tree>
         </field>
@@ -18,7 +21,15 @@
         <field name="model">tourism.places</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    <button name="action_start_booking" string="Start Booking" type='object' class='oe_highlight' states='new' />
+                    <button name="action_cancel" string="Cancel" type='object' states="new,bookings_open,full" />
+                </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Upcoming" bg_color="bg-info" attrs="{'invisible':[('state', '!=', 'new')]}" />
+                    <widget name="web_ribbon" title="Seats Full" bg_color="bg-success" attrs="{'invisible':[('state', '!=', 'full')]}" />
+                    <widget name="web_ribbon" title="Canceled" bg_color="bg-danger" attrs="{'invisible':[('state', '!=', 'cancel')]}" />
                     <h1><field name="name" placeholder="Location"/></h1>
                     <h2><field name="country_id" placeholder="Country" options="{'no_create':True, 'no_open':True}"/></h2>
                     <group>
@@ -40,7 +51,12 @@
                             <field name="description"/>
                         </page>
                         <page string="Bookings">
-                            <field name="booking_ids" />
+                            <field name="booking_ids" attrs="{'readonly': ['|',
+                                                                            ('state', '=', 'new'),
+                                                                            '|',
+                                                                                ('state', '=', 'full'),
+                                                                                ('state', '=', 'cancel')
+                                                                            ]}" />
                         </page>
                     </notebook>
                 </sheet>

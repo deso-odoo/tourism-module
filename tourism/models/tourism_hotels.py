@@ -13,4 +13,5 @@ class tourismHotel(models.Model):
     address = fields.Text(required=True)
     required_days = fields.Integer()
     cars_ids = fields.Many2many('tourism.cars', string="Cars")
-    # place_ids = fields.One2many('tourism.places', 'hotels_id')
+    # place_id = fields.Many2one('tourism.places')
+    sequence = fields.Integer(default=1)

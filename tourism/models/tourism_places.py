@@ -14,8 +14,12 @@ class tourismPlaces(models.Model):
     total_seats = fields.Integer()
     available_seats = fields.Integer(compute="_compute_available_seats")
     including_flights = fields.Boolean()
+    state = fields.Selection(
+        selection=[('new', 'New'), ('bookings_open', 'Bookings Open'), ('full', 'Bookings Full'), ('cancel', 'Cancel')],
+        default='new'
+    )
     # hotels_id = fields.Many2one('tourism.hotels')
-    # hotel_id = fields.Many2one('tourism.hotels', string="Hotel", domain="[('hotel_country_id','=','place_id.country_id')]")
+    # hotel_id = fields.Many2one('tourism.hotels', string="Hotel", domain="[('place_id.country_id','=','hotel_country_id')]")
     hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
     activities_ids = fields.Many2many('tourism.activities','place_activities_rel','activity_id', 'place_id', string="Actvities")
     booking_ids = fields.One2many('tourism.bookings', 'place_id')
@@ -36,3 +40,14 @@ class tourismPlaces(models.Model):
     def _compute_booked_seats(self):
         for record in self:
             record.total_booked_seats = sum(record.booking_ids.mapped('book_seats'))
+
+    # Actions
+    def action_start_booking(self):
+        for record in self:
+            record.state = 'bookings_open'
+        return True
+
+    def action_cancel(self):
+        for record in self:
+            record.state = 'cancel'
+        return True

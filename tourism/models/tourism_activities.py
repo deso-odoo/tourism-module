@@ -8,3 +8,4 @@ class tourismActivities(models.Model):
 
     name = fields.Char(required = True)
     Color = fields.Integer()
+    sequence = fields.Integer(default=1)

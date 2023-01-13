@@ -6,6 +6,7 @@
         <field name="model">tourism.activities</field>
         <field name="arch" type="xml">
             <tree string="Activities">
+                <field name="sequence" widget="handle" />
                 <field name="name"/>
                 <field name="Color" widget="color_picker"/>
             </tree>
