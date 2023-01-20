@@ -8,6 +8,6 @@ class tourismCars(models.Model):
 
     name = fields.Char(required=True)
     modelName = fields.Char(required=True)
-    color = fields.Char(copy=False)
+    Color = fields.Integer(copy=False)
     description = fields.Text()
     available = fields.Boolean()

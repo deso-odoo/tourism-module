@@ -18,12 +18,15 @@ class tourismPlaces(models.Model):
         selection=[('new', 'New'), ('bookings_open', 'Bookings Open'), ('full', 'Bookings Full'), ('cancel', 'Cancel')],
         default='new'
     )
+    hotel_id = fields.Many2one('tourism.hotels')
+    hotel_price = fields.Integer(related='hotel_id.hotel_price')
     # hotels_id = fields.Many2one('tourism.hotels')
     # hotel_id = fields.Many2one('tourism.hotels', string="Hotel", domain="[('place_id.country_id','=','hotel_country_id')]")
     hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
     activities_ids = fields.Many2many('tourism.activities','place_activities_rel','activity_id', 'place_id', string="Actvities")
     booking_ids = fields.One2many('tourism.bookings', 'place_id')
     total_booked_seats = fields.Integer(compute="_compute_booked_seats", default=0)
+    # booked_id = fields.Many2one('res.user')
 
     _sql_constraints = [
         ('check_price', 'CHECK(price>=0)', 'The Price must be Positive!!!'),

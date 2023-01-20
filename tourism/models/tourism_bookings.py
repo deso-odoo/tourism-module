@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class tourismBookings(models.Model):
     _name = "tourism.bookings"
@@ -17,7 +18,14 @@ class tourismBookings(models.Model):
         for record in self:
             record.tax = (record.book_seats*record.place_id.price) * 0.18
 
-    @api.depends('book_seats', 'place_id.price')
+    @api.depends('book_seats', 'place_id.price', 'place_id.hotel_price')
     def _compute_total_price(self):
         for record in self:
-            record.total_price = record.book_seats * record.place_id.price + record.tax
+            record.total_price = ((record.place_id.price + record.place_id.hotel_price) * record.book_seats) + record.tax
+            # record.total_price = record.book_seats * record.place_id.price + record.tax
+    
+    @api.constrains('book_seats')
+    def _check_booking_numbers(self):
+        for record in self:
+            if record.place_id.available_seats < record.book_seats:
+                raise ValidationError("Seats not available")

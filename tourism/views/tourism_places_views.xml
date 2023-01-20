@@ -35,8 +35,9 @@
                     <group>
                         <group>
                             <field name="hotel_id"/>
+                            <field name="hotel_price" />
                             <field name="duration"/>
-                            <field name="price"/>
+                            <field name="price" string="Tour Price (excluding Hotels)"/>
                         </group>
                         <group>
                             <field name="activities_ids" widget="many2many_tags" options="{'color_field':'Color'}" />
@@ -74,6 +75,7 @@
                 <separator/>
                 <filter string="Duration &lt;= 7Days" name="name" domain="[('duration', '&lt;=', 7)]" />
                 <filter string="Duration &gt; 7Days" name="name" domain="[('duration', '&gt;', 7)]" />
+                <filter string="Available" name="available" domain="[('state', 'in', ['new', 'bookings_open'])]"></filter>
                 <group string="Country">
                     <filter string="Country" name="name" context="{'group_by':'country_id'}" />
                 </group>

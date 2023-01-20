@@ -9,6 +9,7 @@
                 <field name="name" />
                 <field name="description" />
                 <field name="address" />
+                <field name="hotel_price"/>
             </tree>
         </field>
     </record>
@@ -23,11 +24,12 @@
                    <group>
                         <group>
                             <field name="address" />
-                            <field name="availablility" />
+                            <field name="hotel_price"/>
                             <field name="required_days" />
                         </group>
                         <group>
-                            <field name="cars_ids" widget="many2many_tags" />
+                            <field name="cars_ids" widget="many2many_tags" options="{'color_field': 'Color'}" />
+                            <field name="availablility" />
                         </group>
                    </group> 
                    <notebook>

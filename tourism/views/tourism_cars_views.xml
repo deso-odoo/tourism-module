@@ -8,7 +8,7 @@
             <tree string="Cars">
                 <field name="name"/>
                 <field name="modelName"/>
-                <field name="color"/>
+                <field name="Color" widget="color_picker"/>
             </tree>
         </field>
     </record>
@@ -21,7 +21,7 @@
                     <h1><field name="name" placeholder="Car Brand"/></h1>
                     <h2><field name="modelName" placeholder="Car Model"/></h2>
                     <group>
-                        <field name="color"/>
+                        <field name="Color" widget="color_picker"/>
                         <field name="available"/>
                     </group>
                     <notebook>
@@ -41,14 +41,14 @@
             <search string="Cars">
                 <field name="name" string="Brand"/>
                 <field name="modelName" string="Model"/>
-                <field name="color" string="Color"/>
+                <field name="Color" string="Color"/>
                 <filter string="Available" name="name" domain="[('available', '=', 'True')]" />
                 <group string="Brand">
                     <filter string="Brand" name="name" context="{'group_by':'name'}"></filter>
                 </group>
-                <group>
-                    <filter string="Color" name="color" context="{'group_by':'color'}"></filter>
-                </group>
+                <!-- <group> -->
+                    <!-- <filter string="Color" name="Color" context="{'group_by':'color'}"></filter> -->
+                <!-- </group> -->
             </search>
         </field>
     </record>
