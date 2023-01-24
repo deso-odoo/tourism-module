@@ -23,6 +23,14 @@
         <field name="res_model">tourism.activities</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <!-- <record id="booking_action" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">tourism.bookings</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain" >
+            [('property_type_id', '=', active_id)]
+        </field>
+    </record> -->
     <menuitem id="tourism_menu_root" name="Tourism">
         <menuitem id="tourism_destination_menu" action="destination_action" name="Destinantions"/>
         <menuitem id="tourist_rentals_menu" name="Rentals">
@@ -30,5 +38,6 @@
             <menuitem id="tourism_cars" action="cars_action" name="Cars" />
         </menuitem>
         <menuitem id="tourist_activities_menu" action="activites_action" name="Activities" />
+        <!-- <menuitem id="tourist_mode_of_transportation" action="transportation_action" name="Transportation" /> -->
     </menuitem>
 </odoo>

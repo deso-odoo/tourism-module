@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-class tourismBookings(models.Model):
+class TourismBookings(models.Model):
     _name = "tourism.bookings"
     _description = "Booking related data"
 
@@ -12,6 +12,11 @@ class tourismBookings(models.Model):
     book_seats = fields.Integer(required=True)
     tax = fields.Integer(compute="_compute_tax")
     total_price = fields.Integer(compute="_compute_total_price")
+    status = fields.Selection(
+        string="Status",
+        selection=[('not_comfirmed', 'Not Confirmed'), ('confirmed', 'Confirmed')],
+        copy=False
+    )
 
     @api.depends('book_seats', 'place_id.price')
     def _compute_tax(self):
@@ -24,8 +29,13 @@ class tourismBookings(models.Model):
             record.total_price = ((record.place_id.price + record.place_id.hotel_price) * record.book_seats) + record.tax
             # record.total_price = record.book_seats * record.place_id.price + record.tax
     
-    @api.constrains('book_seats')
-    def _check_booking_numbers(self):
+    # @api.constrains('book_seats')
+    # def _check_booking_numbers(self):
+    #     for record in self:
+    #         if record.book_seats > record.place_id.available_seats:
+    #             raise ValidationError("Seats not available")
+    def action_confirm_booking(self):
         for record in self:
-            if record.place_id.available_seats < record.book_seats:
-                raise ValidationError("Seats not available")
+            record.status = 'confirmed'
+        return True
+    

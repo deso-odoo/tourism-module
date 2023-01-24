@@ -9,8 +9,8 @@
                 <field name="country_id" />
                 <field name="duration" string="Duration(Days)" />
                 <field name="activities_ids" widget="many2many_tags" options="{'color_field':'Color'}" />
-                <field name="total_seats" />
-                <field name="available_seats" />
+                <!-- <field name="total_seats" /> -->
+                <!-- <field name="available_seats" /> -->
                 <field name="price" optional="show"/>
             </tree>
         </field>
@@ -41,15 +41,28 @@
                         </group>
                         <group>
                             <field name="activities_ids" widget="many2many_tags" options="{'color_field':'Color'}" />
-                            <field name="including_flights"/>
-                            <field name="total_seats"/>
-                            <!-- <field name="total_booked_seats"/> -->
-                            <field name="available_seats"/>
+                            <!-- <field name="total_seats"/> -->
+                            <field name="total_booked_seats"/>
+                            <!-- <field name="available_seats"/> -->
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
+                        </page>
+                        <page string="Mode of Transportation">
+                            <group>
+                                <group>
+                                    <field name="including_flights" string="Flight"/>
+                                    <field name="including_road" string="Road" />
+                                    <field name="including_rail" string="Train" />
+                                </group>
+                                <group>
+                                    <field name="flight_price" string="Flight Price" attrs="{'invisible':[('including_flights', '=', False)]}"/>
+                                    <field name="road_price" string="By Road Price" attrs="{'invisible':[('including_road', '=', False)]}"/>
+                                    <field name="train_price" string="Train Price" attrs="{'invisible':[('including_rail', '=', False)]}"/>
+                                </group>
+                            </group>
                         </page>
                         <page string="Bookings">
                             <field name="booking_ids" attrs="{'readonly': ['|',

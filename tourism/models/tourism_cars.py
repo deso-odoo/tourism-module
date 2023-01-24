@@ -2,7 +2,7 @@
 
 from odoo import models, fields
 
-class tourismCars(models.Model):
+class TourismCars(models.Model):
     _name = "tourism.cars"
     _description = "Cars Provided by Hotel"
 

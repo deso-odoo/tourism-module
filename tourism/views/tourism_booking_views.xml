@@ -4,11 +4,14 @@
         <field name="name">Tourism Booking List View</field>
         <field name="model">tourism.bookings</field>
         <field name="arch" type="xml">
-            <tree string="Bookings" editable="bottom">
+            <tree string="Bookings" editable="bottom" decoration-success="status == 'confirmed'">
+            <!-- <tree string="Bookings"> -->
                 <field name="name_id"/>
                 <field name="book_seats" string="Booked Seats"/>
                 <field name="tax" string="Tax (GST 18%)"/>
                 <field name="total_price" string="Total Price (Including Taxes)"/>
+                <button name="action_confirm_booking" type="object" string="Confirm Booking" attrs="{'invisible': [('status', '!=', False)]}" />
+                <field name="status" invisible='True' />
             </tree>
         </field>
     </record>
@@ -19,9 +22,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <field name="name_id"/>
-                    <field name="book_seats"/>
-                    <field name="total_price"/>
+                    <group>
+                        <field name="name_id"/>
+                        <field name="book_seats"/>
+                        <field name="tax" string="Tax (GST 18%)"/>
+                        <field name="total_price"/>
+                    </group>
                 </sheet>
             </form>
         </field>
