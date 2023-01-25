@@ -20,9 +20,12 @@ class TourismPlaces(models.Model):
     including_rail = fields.Boolean()
     train_price = fields.Integer()
     state = fields.Selection(
-        selection=[('new', 'New'), ('bookings_open', 'Bookings Open'), ('full', 'Bookings Full'), ('cancel', 'Cancel')],
-        default='new'
+        selection=[('a_new', 'New'), ('b_bookings_open', 'Bookings Open'), ('c_bookings_closed', 'Bookings Closed'), ('d_cancel', 'Cancel')],
+        default='a_new'
     )
+    # hotel_id
+    # hotel_id = fields.Many2one("tourism.hotels", string="Hotel")
+
     # mode_of_transportation = fields.Selection(
         # selection=[('road', 'Road'), ()]
     # )
@@ -56,14 +59,18 @@ class TourismPlaces(models.Model):
     # Actions
     def action_start_booking(self):
         for record in self:
-            record.state = 'bookings_open'
+            record.state = 'b_bookings_open'
         return True
 
     def action_cancel(self):
         for record in self:
-            record.state = 'cancel'
+            record.state = 'd_cancel'
         return True
 
+    def action_close_booking(self):
+        for record in self:
+            record.state = 'c_bookings_closed'
+        return True
     # @api.constrains('available_seats')
     # def _check_available_seats(self):
     #     for record in self:

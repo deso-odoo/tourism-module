@@ -19,6 +19,11 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(tourism.tourism_bookings_action)d" type="action" class="oe_stat_button" icon="fa-money">
+                            <field name="booking_count" widget="statinfo" string="Bookings"/>
+                        </button>
+                    </div>
                    <h1><field name="name" placeholder="Hotel Name"/></h1>
                    <h2><field name="hotel_country_id" placeholder="City" options="{'no_create':True, 'no_open':True}"/></h2>
                    <group>

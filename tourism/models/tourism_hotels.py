@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 class TourismHotel(models.Model):
     _name="tourism.hotels"
@@ -16,3 +16,11 @@ class TourismHotel(models.Model):
     # place_id = fields.Many2one('tourism.places')
     sequence = fields.Integer(default=1)
     hotel_price = fields.Integer()
+    booking_ids = fields.One2many('tourism.bookings', 'hotel_id')
+    booking_count = fields.Integer(compute="_compute_booking_count", string="Booking Count")
+
+    # Compute Methods
+    @api.depends('booking_ids')
+    def _compute_booking_count(self):
+        for record in self:
+            record.booking_count = len(record.booking_ids)

@@ -17,6 +17,7 @@ class TourismBookings(models.Model):
         selection=[('not_comfirmed', 'Not Confirmed'), ('confirmed', 'Confirmed')],
         copy=False
     )
+    hotel_id = fields.Many2one('tourism.hotels', related="place_id.hotel_id", store=True)
 
     @api.depends('book_seats', 'place_id.price')
     def _compute_tax(self):

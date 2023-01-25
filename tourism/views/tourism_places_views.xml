@@ -23,13 +23,14 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
-                    <button name="action_start_booking" string="Start Booking" type='object' class='oe_highlight' states='new' />
-                    <button name="action_cancel" string="Cancel" type='object' states="new,bookings_open,full" />
+                    <button name="action_start_booking" string="Start Booking" type='object' class='oe_highlight' states='a_new' />
+                    <button name="action_close_booking" string="Close Booking" type='object' states="b_bookings_open" class='oe_highlight' />
+                    <button name="action_cancel" string="Cancel" type='object' states="a_new,b_bookings_open,c_bookings_closed" />
                 </header>
                 <sheet>
-                    <widget name="web_ribbon" title="Upcoming" bg_color="bg-info" attrs="{'invisible':[('state', '!=', 'new')]}" />
-                    <widget name="web_ribbon" title="Seats Full" bg_color="bg-success" attrs="{'invisible':[('state', '!=', 'full')]}" />
-                    <widget name="web_ribbon" title="Canceled" bg_color="bg-danger" attrs="{'invisible':[('state', '!=', 'cancel')]}" />
+                    <widget name="web_ribbon" title="Upcoming" bg_color="bg-info" attrs="{'invisible':[('state', '!=', 'a_new')]}" />
+                    <widget name="web_ribbon" title="Bookings Closed" bg_color="bg-success" attrs="{'invisible':[('state', '!=', 'c_bookings_closed')]}" />
+                    <widget name="web_ribbon" title="Canceled" bg_color="bg-danger" attrs="{'invisible':[('state', '!=', 'd_cancel')]}" />
                     <h1><field name="name" placeholder="Location"/></h1>
                     <h2><field name="country_id" placeholder="Country" options="{'no_create':True, 'no_open':True}"/></h2>
                     <group>
@@ -66,10 +67,10 @@
                         </page>
                         <page string="Bookings">
                             <field name="booking_ids" attrs="{'readonly': ['|',
-                                                                            ('state', '=', 'new'),
+                                                                            ('state', '=', 'a_new'),
                                                                             '|',
-                                                                                ('state', '=', 'full'),
-                                                                                ('state', '=', 'cancel')
+                                                                                ('state', '=', 'c_bookings_closed'),
+                                                                                ('state', '=', 'd_cancel')
                                                                             ]}" />
                         </page>
                     </notebook>
@@ -88,11 +89,48 @@
                 <separator/>
                 <filter string="Duration &lt;= 7Days" name="name" domain="[('duration', '&lt;=', 7)]" />
                 <filter string="Duration &gt; 7Days" name="name" domain="[('duration', '&gt;', 7)]" />
-                <filter string="Available" name="available" domain="[('state', 'in', ['new', 'bookings_open'])]"></filter>
+                <filter string="Available" name="available" domain="[('state', 'in', ['a_new', 'b_bookings_open'])]"></filter>
                 <group string="Country">
                     <filter string="Country" name="name" context="{'group_by':'country_id'}" />
                 </group>
             </search>
+        </field>
+    </record>
+    <record id="tourism_places_kanban_view" model="ir.ui.view">
+        <field name="name">tourism.places.kanban.view</field>
+        <field name="model">tourism.places</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name" />
+                <field name="country_id" />
+                <field name="duration" />
+                <field name="price" />
+                <field name="activities_ids" />
+                <field name="total_booked_seats" />
+                <field name="state" />
+                <templates>
+                    <t t-name="kanban-box" >
+                        <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="name" />
+                            </strong>
+                            <div>
+                                <field name="country_id" />
+                            </div>
+                            <div>
+                                Duration: <field name="duration" /> days
+                            </div>
+                            <div>
+                                Price: <field name="price" />
+                            </div>
+                            <div>
+                                Total Booking: <field name="total_booked_seats" />
+                            </div>
+                            <field name="activities_ids" options="{'color_field':'Color'}"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 </odoo>

@@ -8,6 +8,7 @@
             <!-- <tree string="Bookings"> -->
                 <field name="name_id"/>
                 <field name="book_seats" string="Booked Seats"/>
+                <field name="hotel_id" invisible="1"/>
                 <field name="tax" string="Tax (GST 18%)"/>
                 <field name="total_price" string="Total Price (Including Taxes)"/>
                 <button name="action_confirm_booking" type="object" string="Confirm Booking" attrs="{'invisible': [('status', '!=', False)]}" />
