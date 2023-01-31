@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_tourism_bookings" model="ir.actions.report">
+        <field name="name">Bookings</field>
+        <field name="model">tourism.places</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tourism.report_tourism_bookings</field>
+        <field name="report_file">tourism.report_tourism_bookings</field>
+        <field name="print_report_name">'Tour Bookings'</field>
+        <field name="binding_model_id" ref="model_tourism_places" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

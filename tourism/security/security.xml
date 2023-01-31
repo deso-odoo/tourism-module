@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.module.category" id="base.module_category_tourism_position">
+        <field name="description">Enables users to see and manage tourism related data.</field>
+    </record>
+    <record id="tourism.tourism_group_agent" model="res.groups">
+        <field name="name">Agent</field>
+        <field name="category_id" ref="base.module_category_tourism_position" />
+    </record>
+    <record id="tourism.tourism_group_hotel_manager" model="res.groups">
+        <field name="name">Hotel Manager</field>
+        <field name="category_id" ref="base.module_category_tourism_position" />
+    </record>
+    <record id="tourism.tourism_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_tourism_position" />
+        <field name="implied_ids" eval="[(4, ref('tourism.tourism_group_agent')), (4, ref('tourism.tourism_group_hotel_manager'))]" />
+    </record>
+    <record id="ir_rule_tourism_agent" model="ir.rule">
+        <field name="name">Tourism: Agent</field>
+        <field name="model_id" ref="model_tourism_places" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="(4, ref('tourism.tourism_group_agent'))" />
+    </record>
+    <record id="ir_rule_tourism_hotel_manager" model="ir.rule">
+        <field name="name">Tourism: Hotel Manager</field>
+        <field name="model_id" ref="model_tourism_hotels" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="(4, ref('tourism.tourism_group_hotel_manager'))" />
+    </record>
+    <record id="ir_rule_tourism_manager" model="ir.rule">
+        <field name="name">Tourism: Manager</field>
+        <field name="model_id" ref="model_tourism_places" />
+        <field name="groups" eval="(4, ref('tourism.tourism_group_manager'))" />
+    </record>
+    <record id="ir_rule_tourism_manager_hotel" model="ir.rule">
+        <field name="name">Tourism: Manager</field>
+        <field name="model_id" ref="model_tourism_hotels" />
+        <field name="groups" eval="(4, ref('tourism.tourism_group_manager'))" />
+    </record>
+</odoo>

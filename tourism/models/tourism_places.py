@@ -5,6 +5,7 @@ from odoo import models, fields, api
 class TourismPlaces(models.Model):
     _name = "tourism.places"
     _description = "Consists of all Tourism places available"
+    _order = "id desc"
 
     name = fields.Char()
     country_id = fields.Many2one('res.country', string="Country")
@@ -23,17 +24,16 @@ class TourismPlaces(models.Model):
         selection=[('a_new', 'New'), ('b_bookings_open', 'Bookings Open'), ('c_bookings_closed', 'Bookings Closed'), ('d_cancel', 'Cancel')],
         default='a_new'
     )
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user)
+
     # hotel_id
     # hotel_id = fields.Many2one("tourism.hotels", string="Hotel")
 
     # mode_of_transportation = fields.Selection(
         # selection=[('road', 'Road'), ()]
     # )
-    hotel_id = fields.Many2one('tourism.hotels')
+    hotel_id = fields.Many2one('tourism.hotels', domain="[('hotel_country_id', '=', country_id)]")
     hotel_price = fields.Integer(related='hotel_id.hotel_price')
-    # hotels_id = fields.Many2one('tourism.hotels')
-    # hotel_id = fields.Many2one('tourism.hotels', string="Hotel", domain="[('place_id.country_id','=','hotel_country_id')]")
-    hotel_id = fields.Many2one('tourism.hotels', string="Hotel")
     activities_ids = fields.Many2many('tourism.activities','place_activities_rel','activity_id', 'place_id', string="Actvities")
     booking_ids = fields.One2many('tourism.bookings', 'place_id')
     total_booked_seats = fields.Integer(compute="_compute_booked_seats", default=0)

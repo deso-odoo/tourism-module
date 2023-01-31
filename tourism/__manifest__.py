@@ -4,8 +4,10 @@
     'version': '1.0',
     'author': 'Deependra Solanki',
     'summary': 'Tourism Booking',
+    'category': 'Tourism/Position',
     'depends': ['base'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/tourism_menus.xml',
         'views/tourism_places_views.xml',
@@ -13,8 +15,9 @@
         'views/tourism_activities_views.xml',
         'views/tourism_cars_views.xml',
         'views/tourism_booking_views.xml',
-        'views/res_users_views.xml'
-
+        'views/res_users_views.xml',
+        'report/tourism_reports.xml',
+        'report/tourism_reports_views.xml'
     ],
     'demo': [
         'demo/tourism_places_demo_data.xml',

@@ -18,7 +18,8 @@ class TourismHotel(models.Model):
     hotel_price = fields.Integer()
     booking_ids = fields.One2many('tourism.bookings', 'hotel_id')
     booking_count = fields.Integer(compute="_compute_booking_count", string="Booking Count")
-
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user)
+    
     # Compute Methods
     @api.depends('booking_ids')
     def _compute_booking_count(self):

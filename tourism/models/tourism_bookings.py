@@ -14,7 +14,8 @@ class TourismBookings(models.Model):
     total_price = fields.Integer(compute="_compute_total_price")
     status = fields.Selection(
         string="Status",
-        selection=[('not_comfirmed', 'Not Confirmed'), ('confirmed', 'Confirmed')],
+        selection=[('not_confirmed', 'Not Confirmed'), ('confirmed', 'Confirmed')],
+        default='not_confirmed',
         copy=False
     )
     hotel_id = fields.Many2one('tourism.hotels', related="place_id.hotel_id", store=True)

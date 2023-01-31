@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_tourism_bookings">
+        <t t-foreach="docs" t-as="booking">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>
+                            <span t-field="booking.name" />, <span t-field="booking.country_id" />
+                        </h1>
+                        <h2>
+                            Hotel: <span t-field="booking.hotel_id" />
+                        </h2>
+                        <h3>
+                            Duration: <span t-field="booking.duration" /> days
+                        </h3>
+                        <t t-call="tourism.report_tourism_bookings_table" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_tourism_bookings_table">
+        <t t-if="booking.booking_ids">
+            <table class="table">
+                <thead>
+                    <th>Booked by</th>
+                    <th>Seats</th>
+                    <th>Price(inclu. tax)</th>
+                    <th>Invoice</th>
+                </thead>
+                <tbody>
+                    <t t-set="bookings" t-value="booking.mapped('booking_ids')" />
+                    <tr t-foreach="bookings" t-as="book" class="text-danger">
+                        <t t-if="book.status == 'confirmed'">
+                            <t t-set="textColor" t-value="'text-success'"/>
+                        </t>
+                        <t t-else="">
+                            <t t-set="textColor" t-value="'text-dark'"/>
+                        </t>
+                        <td>
+                            <span t-field="book.name_id" t-att-class="textColor" />
+                        </td>
+                        <td>
+                            <span t-field="book.book_seats" t-att-class="textColor" />
+                        </td>
+                        <td>
+                            <span t-field="book.total_price" t-att-class="textColor" />
+                        </td>
+                        <td>
+                            <t t-if="book.status == 'confirmed'">
+                                <span t-att-class="textColor">Created</span>
+                            </t>
+                            <t t-else="">
+                                <span t-att-class="textColor">Not Created</span>
+                            </t>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+        <t t-else="">
+            <div>No Bookings Found!!!!</div>
+        </t>
+    </template>
+</odoo>

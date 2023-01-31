@@ -33,11 +33,11 @@
     </record>
     <menuitem id="tourism_menu_root" name="Tourism">
         <menuitem id="tourism_destination_menu" action="destination_action" name="Destinantions"/>
-        <menuitem id="tourist_rentals_menu" name="Rentals">
+        <menuitem id="tourist_rentals_menu" name="Rentals" groups="tourism.tourism_group_hotel_manager">
             <menuitem id="tourism_hotels_menu" action="hotels_action" name="Hotels" />
             <menuitem id="tourism_cars" action="cars_action" name="Cars" />
         </menuitem>
-        <menuitem id="tourist_activities_menu" action="activites_action" name="Activities" />
+        <menuitem id="tourist_activities_menu" action="activites_action" name="Activities" groups="tourism.tourism_group_manager" />
         <!-- <menuitem id="tourist_mode_of_transportation" action="transportation_action" name="Transportation" /> -->
     </menuitem>
 </odoo>

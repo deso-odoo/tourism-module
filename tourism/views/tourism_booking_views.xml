@@ -3,15 +3,14 @@
     <record id="tourism_booking_list_view" model="ir.ui.view">
         <field name="name">Tourism Booking List View</field>
         <field name="model">tourism.bookings</field>
-        <field name="arch" type="xml">
-            <tree string="Bookings" editable="bottom" decoration-success="status == 'confirmed'">
-            <!-- <tree string="Bookings"> -->
-                <field name="name_id"/>
-                <field name="book_seats" string="Booked Seats"/>
+        <field name="arch" type="xml" >
+            <tree string="Bookings" editable="bottom" decoration-success="status == 'confirmed'" >
+                <field name="name_id" attrs="{'readonly':[('status','=','confirmed')]}" />
+                <field name="book_seats" string="Booked Seats" attrs="{'readonly':[('status','=','confirmed')]}" />
                 <field name="hotel_id" invisible="1"/>
                 <field name="tax" string="Tax (GST 18%)"/>
                 <field name="total_price" string="Total Price (Including Taxes)"/>
-                <button name="action_confirm_booking" type="object" string="Confirm Booking" attrs="{'invisible': [('status', '!=', False)]}" />
+                <button name="action_confirm_booking" type="object" string="Confirm Booking" attrs="{'invisible': [('status', '!=', 'not_confirmed')]}" />
                 <field name="status" invisible='True' />
             </tree>
         </field>
