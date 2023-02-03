@@ -33,6 +33,7 @@
                     <widget name="web_ribbon" title="Canceled" bg_color="bg-danger" attrs="{'invisible':[('state', '!=', 'd_cancel')]}" />
                     <h1><field name="name" placeholder="Location"/></h1>
                     <h2><field name="country_id" placeholder="Country" options="{'no_create':True, 'no_open':True}"/></h2>
+                    <field name="image" widget='image' class="oe_avatar" nolabel="1" options="{'size': [200, 200]}"/>
                     <group>
                         <group>
                             <field name="hotel_id" options="{'no_create':True}"/>

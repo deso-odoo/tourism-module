@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="menu_shop" model="website.menu">
+            <field name="name">Tours</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="url">tourism/</field>
+        </record>
+    </data>
+    <template id="place">
+        <t t-call="website.layout">
+            <t t-set="title">Place</t>
+            <div class="oe_structure">
+                <div class="oe_structure">
+                <div class="" style="background-color:#f5f5f5;">
+                    <nav aria-label="breadcrumb" style="background-color:transparent; position:absolute;">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="/tourism/" class="text-light">Tours</a></li>
+                          <li class="breadcrumb-item active text-light" aria-current="page"><t t-esc="places.name"/></li>
+                        </ol>
+                      </nav>
+                    <img t-attf-alt="{{places.name}}" t-attf-src="data:image/jpg;base64,{{ places.image }}" style="height:80vh; width:100%;"/>
+                    <div class="container">
+                        <h2 t-field="places.name" class="text-center mt-3" />
+                        <p class="text-end">Last modified: <i t-field="places.write_date" t-options='{"widget":"relative"}'/></p>
+                        <div class="row mt-3 pb-5">
+                            <div class="col-md-4">
+                                <div class="bg-dark text-light py-4 px-3">
+                                    <h3 class="text-center">Highlights</h3>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Place</span>
+                                        <span t-field="places.name" />
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Country</span>
+                                        <span t-field="places.country_id" />
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Duration</span>
+                                        <span><span t-field="places.price" /> Days</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Date Availability</span>
+                                        <span>$ <span t-field="places.price" /></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Hotel</span>
+                                        <span t-field="places.hotel_id.name" />
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 border-bottom border-white">
+                                        <span>Hotel Price</span>
+                                        <span t-field="places.hotel_price" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 style="font-family:Lato;">Description:</h4>
+                                <div t-field="places.description"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">Tours</t>
+            <h3 class="text-center mt-3">Tours</h3>
+            <div clas="oe_structure">
+                <div class="container">
+                    <div class="row gx-5">
+                        <t t-foreach="places" t-as="place">
+                            <div class="col-md-4 mt-2 px-0 mb-5">
+                                <div class="card shadow bg-body-tertiary position-relative mx-auto" style="border-radius:20px; width:90%;">
+                                    <t t-if="place.state == 'new'">
+                                    <span class="badge bg-success text-uppercase position-absolute end-0 mt-2 me-4">
+                                        New
+                                    </span>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="badge bg-primary text-uppercase position-absolute end-0 mt-2 me-4">
+                                            Offer Received
+                                        </span>
+                                    </t>
+                                    <img t-attf-alt="No Image Available" t-attf-src="data:image/jpg;base64,{{ place.image }}" class="img-fluid" style="height:250px; width:400px;"/>
+                                    <div class="d-flex">
+                                        <t t-foreach="place.activities_ids" t-as="activity">
+                                            <span class="badge bg-dark ms-2 mt-n4 h-100">
+                                                <t t-esc="activity.name" />
+                                            </span>
+                                        </t>
+                                    </div>
+                                    <div class="px-3 card-body">
+                                        <a t-attf-href="/tourism/{{slug(place)}}" class="text-decoration-none link-dark">
+                                            <span class="h5">
+                                                <t t-esc="place.name" />, <span class="h6"><t t-esc="place.country_id.name" /></span>
+                                            </span>
+                                            <h6>
+                                               $ <t t-esc="'{0:,.2f}'.format(int(place.price))"  />
+                                            </h6>
+                                        </a>
+                                        <!-- <div class="text-muted">
+                                            <span class="border-end pe-2 border-2"><i class="fa fa-bed"></i> <t t-esc="property.bedrooms" /> Beds</span>
+                                            <span class="border-end pe-2 border-2"><i class="fa fa-building"></i> <t t-esc="property.facades" /> Facades</span>
+                                            <span><i class="fa fa-ruler-horizontal"></i><t t-esc="property.total_area" /> m<sup>2</sup></span>
+                                        </div> -->
+                                        <p class="text-muted small mt-3 text-end text-primary" >
+                                            <a t-attf-href="/tourism/{{slug(place)}}" class="text-decoration-none link-primary">
+                                                View <i class="fa fa-arrow-right"/> 
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>    
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <t t-call="website.pager"/>
+            </div>
+        </t>
+    </template>
+</odoo>

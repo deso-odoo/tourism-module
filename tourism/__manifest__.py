@@ -5,7 +5,7 @@
     'author': 'Deependra Solanki',
     'summary': 'Tourism Booking',
     'category': 'Tourism/Position',
-    'depends': ['base'],
+    'depends': ['base', 'website'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
@@ -16,6 +16,7 @@
         'views/tourism_cars_views.xml',
         'views/tourism_booking_views.xml',
         'views/res_users_views.xml',
+        'views/template.xml',
         'report/tourism_reports.xml',
         'report/tourism_reports_views.xml'
     ],

@@ -38,6 +38,7 @@ class TourismPlaces(models.Model):
     booking_ids = fields.One2many('tourism.bookings', 'place_id')
     total_booked_seats = fields.Integer(compute="_compute_booked_seats", default=0)
     # booked_id = fields.Many2one('res.user')
+    image = fields.Binary(attachment=True, store=True)
 
     _sql_constraints = [
         ('check_price', 'CHECK(price>=0)', 'The Price must be Positive!!!'),
